@@ -3,7 +3,7 @@
 A C++ console application that simulates a basic ATM interface. This project focuses on CLI (Command Line Interface) design, using ASCII art and basic state management to create an immersive terminal experience.
 
 ## 📸 Preview
-*(You can add a screenshot here later)*
+
 
 ## 🚀 Features
 - **Graphic Interface:** Uses ASCII art and box-drawing characters for a retro UI.
