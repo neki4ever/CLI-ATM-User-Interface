@@ -1,0 +1,19 @@
+# --- Executables ---
+*.exe
+*.out
+*.app
+
+# --- Intermediate Build Object Files (MSVC) ---
+*.o
+*.obj
+
+# --- Debugging & Linker Files (MSVC) ---
+*.ilk
+*.pdb
+
+# --- VS Code Configuration ---
+.vscode/ipch/
+.vscode/browse.vc.db*
+
+# --- Windows System Files ---
+Thumbs.db

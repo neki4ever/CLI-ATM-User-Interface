@@ -1,0 +1,18 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "cl.exe - Build and debug active file",
+            "type": "cppvsdbg",
+            "request": "launch",
+            // We use a forward slash / here to avoid the 'Spade' \f error
+            "program": "${fileDirname}/${fileBasenameNoExtension}.exe",
+            "args": [],
+            "stopAtEntry": false,
+            "cwd": "${fileDirname}",
+            "environment": [],
+            "console": "externalTerminal",
+            "preLaunchTask": "Global MSVC Build"
+        }
+    ]
+}
