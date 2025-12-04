@@ -1,14 +1,36 @@
 #include <iostream>
 #include <string>
+#include <vector>
 #include <iomanip>
+#include <fstream> 
+
 using namespace std;
 
+bool verificaLogare(string inputUser, string inputPass) {
+    ifstream fisier("users.txt"); // Deschidem fisierul pentru citire
+    string u, p;
 
+    // Verificam daca fisierul exista
+    if (!fisier.is_open()) {
+        system("cls");
+        cout << "EROARE CRITICA: Fisierul 'users.txt' nu a fost gasit!" << endl;
+        system("pause");
+        return false;
+    }
 
+    while (fisier >> u >> p) {
+        if (u == inputUser && p == inputPass) {
+            return true; // Am gasit potrivire
+        }
+    }
+
+    return false; 
+}
 
 int main(){
 
     system("color 06");
+    string userNameInput, passInput;
     float balanta = 0.00;
     int loginChoice, mainChoice;
     bool logat = false;
@@ -20,8 +42,8 @@ int main(){
         | |------------------------| |
         | |                        | |
         | |                        | |
-        | |       1. LOG IN        | | 
-        | |       2. IESIRE        | | 
+        | |      1. LOG IN         | | 
+        | |      2. IESIRE         | | 
         | |                        | | 
         | |                        | |
         | |                        | |
@@ -42,7 +64,7 @@ int main(){
         | | 3. Retragere           | | 
         | | 4. Istoric             | | 
         | |                        | |
-        | |        IESIRE(5)       | |
+        | |       IESIRE(5)        | |
         | |________________________| |
         |____________________________|
         
@@ -56,24 +78,46 @@ int main(){
         cout << meniuLogin << endl;
         cout << endl;
         cout << "Alege o optiune(1-2): ";
-        cin >> loginChoice;
+        if (!(cin >> loginChoice)) { 
+            cin.clear(); 
+            cin.ignore(1000, '\n'); 
+            loginChoice = 0; 
+        }
         system("cls");
 
         switch(loginChoice) {
             case 1:
-                logat = true;
                 system("cls");
-            break;
 
+                cout << "\n\n";
+                cout << "      ==========================" << endl;
+                cout << "           INTRODU USER/PAROLA" << endl;
+                cout << "      ==========================" << endl;
+
+                cout << "Username: ";
+                cin >> userNameInput;
+                cout << endl;
+
+                cout << "Parola: ";
+                cin >> passInput;
+
+                if(verificaLogare(userNameInput, passInput)){
+                    logat = true;
+                } else {
+                    cout << "\n\n      USER SAU PAROLA GRESITA!\n";
+                    system("pause > nul");
+                }
+
+                system("cls");
+                break;
             case 2:
                 return 0;
-            break;
-
+                break;
             default:
                 cout << "Eroare: Input Invalid!";
                 cout << endl;
-            break;
-        }
+                break;
+            }
 
     }
 
@@ -180,7 +224,7 @@ cout << R"(
      |  _________________________  |
      | |-------------------------| |
      | |                         | |
-     | |   RETRAS CU SUCCES!  | |)"; 
+     | |   RETRAS CU SUCCES!     | |)"; 
                 cout << endl << "     | |      $";
                 cout << fixed << setprecision(2) << left << setw(18) << balanta;
                 cout << "| |" << endl;
